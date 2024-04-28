@@ -81,12 +81,11 @@ class ExpenseController extends Controller
     public function filterByDate(Request $request)
 {
     $request->validate([
-        'start_date' => 'required|date',
-        'end_date' => 'required|date|after_or_equal:start_date',
+        'start_date' => 'required|date_format:Y-m-d',
+        'end_date' => 'required|date_format:Y-m-d|after_or_equal:start_date',
     ]);
 
-    $expenses = Auth::user()->expenses()
-                    ->whereBetween('date', [$request->start_date, $request->end_date])
+    $expenses = Expense::whereBetween('date', [$request->start_date, $request->end_date])
                     ->latest()
                     ->get();
 
@@ -96,5 +95,5 @@ class ExpenseController extends Controller
 }
 
 
-}
 
+}
