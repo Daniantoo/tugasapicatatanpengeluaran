@@ -38,7 +38,7 @@
 <div class="row mb-4">
     <div class="col-md-12">
         <h2>Filter Berdasarkan Tanggal</h2>
-        <form action="{{ route('expenses.filter') }}" method="GET">
+        <form action="{{ route('expenses.filter') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-4">
